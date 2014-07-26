@@ -102,6 +102,12 @@ public class Fibonacci {
 		return result[0][1];
 	}
 
+	/**
+	 * research from Internet.
+	 * 
+	 * @param nth
+	 * @return
+	 */
 	public long fibFastDoubling(int nth) {
 		if (nth == 0)
 			return 0;
@@ -116,6 +122,13 @@ public class Fibonacci {
 			return b * (2 * a - b);
 	}
 
+	/**
+	 * Using the idea of reflection, to produce the reflection whenever nth
+	 * number is not power of 2
+	 * 
+	 * @param nth
+	 * @return
+	 */
 	public long fib6(int nth) {
 		if (nth < 1)
 			return nth;
