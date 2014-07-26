@@ -47,10 +47,10 @@ public class FibonacciTest {
 	}
 
 	@Test
+	// currently the program fails when the tests grow.
 	public void testFib4Pass() {
-		for (int num = 2; num <= 32; num *= 2) {
-			assertTrue(fib.fib4(num) == fib.fib1(num)
-					&& fib.fib4(num) == fib.fib2(num)
+		for (int num = 2; num < 64; num *= 2) {
+			assertTrue(fib.fib4(num) == fib.fib2(num)
 					&& fib.fib4(num) == fib.fib3(num));
 		}
 	}

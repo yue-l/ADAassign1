@@ -15,7 +15,7 @@ public class Fibonacci {
 	 * @param nth
 	 * @return the nth fibon number
 	 */
-	public int fib1(int nth) {
+	public long fib1(int nth) {
 		if (nth == 0)
 			return 0;
 		else if (nth == 1)
@@ -29,7 +29,7 @@ public class Fibonacci {
 	 * @param nth
 	 * @return nth fibon
 	 */
-	public int fib2(int nth) {
+	public long fib2(int nth) {
 		int size = nth + 1;
 		int[] nums = new int[size];
 		if (nth == 0) {
@@ -51,8 +51,8 @@ public class Fibonacci {
 	 * @param second
 	 * @return
 	 */
-	private int[][] multi2by2(int[][] first, int[][] second) {
-		int[][] result = new int[2][2];
+	private long[][] multi2by2(long[][] first, long[][] second) {
+		long[][] result = new long[2][2];
 		result[0][0] = first[0][0] * second[0][0] + first[0][1] * second[1][0];
 		result[0][1] = first[0][0] * second[0][1] + first[0][1] * second[1][1];
 		result[1][0] = first[1][0] * second[0][0] + first[1][1] * second[1][0];
@@ -66,14 +66,14 @@ public class Fibonacci {
 	 * @param nth
 	 * @return
 	 */
-	public int fib3(int nth) {
+	public long fib3(int nth) {
 		if (nth == 0)
 			return 0;
 		else if (nth == 1)
 			return 1;
 		else {
-			int[][] first = new int[][] { { 0, 1 }, { 1, 1 } };
-			int[][] second = new int[][] { { 0, 1 }, { 1, 0 } };
+			long[][] first = new long[][] { { 0, 1 }, { 1, 1 } };
+			long[][] second = new long[][] { { 0, 1 }, { 1, 0 } };
 			for (int i = 1; i < nth; i++) {
 				second = multi2by2(second, first);
 			}
@@ -88,18 +88,47 @@ public class Fibonacci {
 	 * @param nth
 	 * @return
 	 */
-	public int fib4(int nth) {
+	public long fib4(int nth) {
 		if (nth == 0)
 			return 0;
 		else if (nth == 1)
 			return 1;
-		int[][] result = new int[][] { { 0, 1 }, { 1, 1 } };
+		long[][] result = new long[][] { { 0, 1 }, { 1, 1 } };
 		int times = 1;
 		int limit = (int) (Math.log(nth) / Math.log(2));
 		while (times++ <= limit) {
 			result = multi2by2(result, result);
 		}
 		return result[0][1];
+	}
+
+	public long fibFastDoubling(int nth) {
+		if (nth == 0)
+			return 0;
+		if (nth < 3)
+			return 1;
+		int mid = nth / 2;
+		long a = fibFastDoubling(mid + 1);
+		long b = fibFastDoubling(mid);
+		if (mid % 2 == 1)
+			return a * a + b * b;
+		else
+			return b * (2 * a - b);
+	}
+
+	public long fib6(int nth) {
+		if (nth < 1)
+			return nth;
+		long[][] theMatrix = new long[][] { { 0, 1 }, { 1, 1 } };
+		long[][] result = { { 1, 0 }, { 0, 1 } };
+		while (nth > 0) {
+			if (nth % 2 == 1) {
+				result = multi2by2(result, theMatrix);
+			}
+			nth /= 2;
+			theMatrix = multi2by2(theMatrix, theMatrix);
+		}
+		return result[1][0];
 	}
 
 	public static void main(String[] args) {
@@ -117,8 +146,11 @@ public class Fibonacci {
 		for (int i = 0; i < 47; i++) {
 			System.out.println("case " + i + ": " + f.fib3(i));
 		}
-		for (int i = 2; i <= 50; i *= 2) {
+		for (int i = 2; i <= 64; i *= 2) {
 			System.out.println("case " + i + ": " + f.fib4(i));
+		}
+		for (int i = 0; i <= 64; i++) {
+			System.out.println("case " + i + ": " + f.fib6(i));
 		}
 	}
 }
