@@ -1,4 +1,4 @@
-package assignment_1;
+package yue_version;
 
 import static org.junit.Assert.*;
 
