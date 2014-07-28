@@ -9,6 +9,20 @@ package yue_version;
  */
 public class Fibonacci {
 
+	public long[] fibos;
+
+	/**
+	 * creates a fibonacci sequence.
+	 * 
+	 * @param howMany
+	 */
+	public Fibonacci(int howMany) {
+		this.fibos = new long[howMany];
+	}
+
+	public Fibonacci() {
+	}
+
 	/**
 	 * The simplest way to solve fibonacci. Time complexity is exponential
 	 * 
