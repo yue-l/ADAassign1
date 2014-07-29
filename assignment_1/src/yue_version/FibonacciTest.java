@@ -1,24 +1,29 @@
 package yue_version;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+
+import java.math.BigInteger;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * JUnit tests to automate the checks for correctness of algorithm
+ * implementation.
+ * 
+ * @author go-mk03
+ * @version This tests are designed for getting run time complexity of different
+ *          algorithms
+ */
 public class FibonacciTest {
 
 	private Fibonacci fib;
-	private final long[] expected = { 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89,
-			144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711,
-			28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040,
-			1346269, 2178309, 3524578, 5702887, 9227465, 14930352, 24157817,
-			39088169, 63245986, 102334155, 165580141, 267914296, 433494437,
-			701408733, 1134903170, 1836311903,  };
 
 	@Before
 	public void setUp() throws Exception {
-		fib = new Fibonacci(47);
+		fib = new Fibonacci();
+		fib.prepareFibLst(35);
 	}
 
 	@After
@@ -29,40 +34,64 @@ public class FibonacciTest {
 	@Test
 	public void testFib1WithinIntRangePass() {
 		long time = System.nanoTime();
-		for (int i = 0; i < expected.length; i++) {
-			assertTrue("the actual out differs. Expected " + expected[i]
-					+ " was " + fib.fib1(i), expected[i] == fib.fib1(i));
+		for (int i = 0; i < fib.fibLst.size(); i++) {
+			assertTrue(
+					"the actual out differs. Expected " + fib.fibLst.get(i)
+							+ " was "
+							+ fib.fib1(new BigInteger(Integer.toString(i))),
+					fib.fibLst.get(i).equals(
+							(fib.fib1(new BigInteger(Integer.toString(i))))));
 		}
-		System.out.println(System.nanoTime() - time);
+		long result = (System.nanoTime() - time) / 1000;
+		System.out.println("fib1 took " + result
+				+ " mircoseconds to finish the job");
 	}
 
 	@Test
-	public void testFib2WithinIntRangePass() {
+	public void testFib2WithinInt47RangePass() {
 		long time = System.nanoTime();
-		for (int i = 0; i < expected.length; i++) {
-			assertTrue("the actual out differs. Expected " + expected[i]
-					+ " was " + fib.fib1(i), expected[i] == fib.fib2(i));
+		for (int i = 0; i < fib.fibLst.size(); i++) {
+			assertTrue(
+					"the actual out differs. Expected " + fib.fibLst.get(i)
+							+ " was "
+							+ fib.fib2(new BigInteger(Integer.toString(i))),
+					fib.fibLst.get(i).equals(
+							fib.fib2(new BigInteger(Integer.toString(i)))));
 		}
-		System.out.println(System.nanoTime() - time);
+		long result = (System.nanoTime() - time) / 1000;
+		System.out.println("fib2 took " + result
+				+ " mircoseconds to finish the job");
 	}
 
 	@Test
-	public void testFib3WithinRangePass() {
+	public void testFib3Within47RangePass() {
 		long time = System.nanoTime();
-		for (int i = 0; i < expected.length; i++) {
-			assertTrue("the actual out differs. Expected " + expected[i]
-					+ " was " + fib.fib1(i), expected[i] == fib.fib3(i));
+		for (int i = 0; i < fib.fibLst.size(); i++) {
+			assertTrue(
+					"the actual out differs. Expected " + fib.fibLst.get(i)
+							+ " was "
+							+ fib.fib3(new BigInteger(Integer.toString(i))),
+					fib.fibLst.get(i).equals(
+							fib.fib3(new BigInteger(Integer.toString(i)))));
 		}
-		System.out.println(System.nanoTime() - time);
+		long result = (System.nanoTime() - time) / 1000;
+		System.out.println("fib3 took " + result
+				+ " mircoseconds to finish the job");
 	}
 
 	@Test
-	public void testFib4WithinRangePass() {
+	public void testFib4Within47RangePass() {
 		long time = System.nanoTime();
-		for (int i = 0; i < expected.length; i++) {
-			assertTrue("the actual out differs. Expected " + expected[i]
-					+ " was " + fib.fib1(i), expected[i] == fib.fib2(i));
+		for (int i = 0; i < fib.fibLst.size(); i++) {
+			assertTrue(
+					"the actual out differs. Expected " + fib.fibLst.get(i)
+							+ " was "
+							+ fib.fib4(new BigInteger(Integer.toString(i))),
+					fib.fibLst.get(i).equals(
+							fib.fib4(new BigInteger(Integer.toString(i)))));
 		}
-		System.out.println(System.nanoTime() - time);
+		long result = (System.nanoTime() - time) / 1000;
+		System.out.println("fib4 took " + result
+				+ " mircoseconds to finish the job");
 	}
 }
