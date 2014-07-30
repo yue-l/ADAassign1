@@ -1,4 +1,4 @@
-package yue_version;
+package yue_version.fibonacci;
 
 import static org.junit.Assert.assertTrue;
 
