@@ -6,8 +6,9 @@ import java.util.ArrayList;
 /**
  * Fibonacci finder to help user find out nth fibonacci number.
  * 
- * @author go-mk03
- * @version 26-07-14
+ * @author Yue
+ * @version 26-07-14 replaced primitive type implementation for checking large
+ *          faboncacci number
  *
  */
 public class Fibonacci {
@@ -196,7 +197,7 @@ public class Fibonacci {
 		System.out.println(a.subtract(b).equals(new BigInteger("1")));
 
 		Fibonacci fffi = new Fibonacci();
-		fffi.prepareFibLst(100000);
+		// fffi.prepareFibLst(1000);
 		System.out.println(fffi.fib4(new BigInteger("100000")));
 	}
 }

@@ -12,7 +12,7 @@ import org.junit.Test;
  * JUnit tests to automate the checks for correctness of algorithm
  * implementation.
  * 
- * @author go-mk03
+ * @author Yue
  * @version This tests are designed for getting run time complexity of different
  *          algorithms
  */
