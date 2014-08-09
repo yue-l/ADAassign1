@@ -16,7 +16,7 @@ import org.junit.Test;
  * @version This tests are designed for getting run time complexity of different
  *          algorithms
  */
-public class FibonacciTest {
+public class FibonacciCorrectnessTest {
 
 	private Fibonacci fib;
 

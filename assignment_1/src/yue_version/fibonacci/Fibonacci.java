@@ -184,20 +184,13 @@ public class Fibonacci {
 				System.out.print(", ");
 		}
 		System.out.println("]");
-		// for (int i = 2; i <= 64; i *= 2) {
-		// System.out.println("case " + i + ": " + f.fib4(i));
-		// }
-		System.out.println("fib6 tests:");
+		System.out.println("fib4 tests:");
 		for (int i = 0; i <= 64; i++) {
 			System.out.println("case " + i + ": "
 					+ f.fib4(new BigInteger(Integer.toString(i))));
 		}
-		BigInteger a = new BigInteger("2");
-		BigInteger b = new BigInteger("1");
-		System.out.println(a.subtract(b).equals(new BigInteger("1")));
 
 		Fibonacci fffi = new Fibonacci();
-		// fffi.prepareFibLst(1000);
 		System.out.println(fffi.fib4(new BigInteger("100000")));
 	}
 }

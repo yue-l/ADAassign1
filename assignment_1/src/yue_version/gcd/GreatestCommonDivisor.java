@@ -18,5 +18,6 @@ public class GreatestCommonDivisor {
 	public static void main(String[] args) {
 		GreatestCommonDivisor gcd = new GreatestCommonDivisor();
 		System.out.println("GCD " + 2 + " and " + 4 + " is " + gcd.gcd(2, 4));
+		System.out.println("GCD " + 15 + " and " + 7 + " is " + gcd.gcd(15, 7));
 	}
 }

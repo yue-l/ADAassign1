@@ -10,7 +10,7 @@ import java.math.BigInteger;
  * @version 30-07-14
  *
  */
-public class FibonacciTimeComplexity {
+public class FibonacciTimeComplexityTest {
 
 	private static int[] TEST_CASES;
 
@@ -22,14 +22,14 @@ public class FibonacciTimeComplexity {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		FibonacciTimeComplexity f = new FibonacciTimeComplexity();
+		FibonacciTimeComplexityTest f = new FibonacciTimeComplexityTest();
 		// exponential times
-		// f.functionOneTime(20);
+		f.functionOneTime(20);
 		// linear
-		// f.functionTwoTime(30);
+		f.functionTwoTime(30);
 		// logarithm
 		f.functionThreeTime(1000);
-		// f.functionFourTime(50);
+		f.functionFourTime(3000);
 	}
 
 	/**
@@ -39,14 +39,13 @@ public class FibonacciTimeComplexity {
 		TEST_CASES = new int[limit];
 		int nth = 0;
 		for (int i = 0; i < limit; i++) {
-			FibonacciTimeComplexity.TEST_CASES[i] = nth += 2;
+			FibonacciTimeComplexityTest.TEST_CASES[i] = nth += 2;
 		}
 	}
 
 	public void functionOneTime(int n) {
 		CASES_INIT(n);
 		Fibonacci fibo = new Fibonacci();
-		fibo.prepareFibLst(n);
 		for (int index = 0; index < TEST_CASES.length; index++) {
 			long time = System.nanoTime();
 			fibo.fib1(new BigInteger(Integer.toString(TEST_CASES[index])));
@@ -58,7 +57,6 @@ public class FibonacciTimeComplexity {
 	public void functionTwoTime(int n) {
 		CASES_INIT(n);
 		Fibonacci fibo = new Fibonacci();
-		fibo.prepareFibLst(n);
 		for (int index = 0; index < TEST_CASES.length; index++) {
 			long time = System.nanoTime();
 			fibo.fib2(new BigInteger(Integer.toString(TEST_CASES[index])));
@@ -70,7 +68,6 @@ public class FibonacciTimeComplexity {
 	public void functionThreeTime(int n) {
 		CASES_INIT(n);
 		Fibonacci fibo = new Fibonacci();
-		fibo.prepareFibLst(n);
 		for (int index = 0; index < TEST_CASES.length; index++) {
 			long time = System.nanoTime();
 			fibo.fib3(new BigInteger(Integer.toString(TEST_CASES[index])));
@@ -82,7 +79,6 @@ public class FibonacciTimeComplexity {
 	public void functionFourTime(int n) {
 		CASES_INIT(n);
 		Fibonacci fibo = new Fibonacci();
-		fibo.prepareFibLst(n);
 		for (int index = 0; index < TEST_CASES.length; index++) {
 			long time = System.nanoTime();
 			fibo.fib3(new BigInteger(Integer.toString(TEST_CASES[index])));
