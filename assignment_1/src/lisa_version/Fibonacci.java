@@ -36,7 +36,7 @@ public class Fibonacci {
 
 		System.out.println("---------Fibfun2 performance ----------");
 		long startTime = System.nanoTime();// System.currentTimeMillis();
-		for (int i = 10; i <= 100; i++) {
+		for (int i = 1; i <= 1000; i++) {
 			fibonacci.Fibfun2(i);
 		}
 		long finishTime = System.nanoTime();// System.currentTimeMillis();
@@ -45,7 +45,7 @@ public class Fibonacci {
 
 		System.out.println("---------Fibfun3 performance ----------");
 		startTime = System.nanoTime();// System.currentTimeMillis();
-		for (int i = 90; i <= 190; i++) {
+		for (int i = 1; i <= 1000; i++) {
 			fibonacci.Fibfun3(i);
 		}
 		finishTime = System.nanoTime();// System.currentTimeMillis();
@@ -54,7 +54,7 @@ public class Fibonacci {
 
 		System.out.println("---------Fibfun4 performance ----------");
 		startTime = System.nanoTime();// System.currentTimeMillis();
-		for (int i = 10; i <= 100; i++) {
+		for (int i = 1; i <= 1000; i++) {
 			fibonacci.Fibfun4(i);
 		}
 		finishTime = System.nanoTime();// System.currentTimeMillis();

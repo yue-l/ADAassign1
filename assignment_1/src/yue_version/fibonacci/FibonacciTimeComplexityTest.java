@@ -27,10 +27,11 @@ public class FibonacciTimeComplexityTest {
 		// exponential times
 		// f.functionOneTime(20);
 		// linear
-		f.functionTwoTime(100000000);
+		// f.functionTwoTime(30);
+		 f.functionFiveTime(10000);
 		// logarithm
 		// f.functionThreeTime(10000);
-		// f.functionFourTime(10000);
+		// f.functionFourTime(30);
 	}
 
 	/**
@@ -96,6 +97,17 @@ public class FibonacciTimeComplexityTest {
 		for (int index = 0; index < TEST_CASES.size(); index++) {
 			long time = System.nanoTime();
 			fibo.fib3(TEST_CASES.get(index));
+			System.out.println(System.nanoTime() - time);
+		}
+
+	}
+
+	public void functionFiveTime(int n) {
+		CASES_INIT(n);
+		Fibonacci fibo = new Fibonacci();
+		for (int index = 0; index < TEST_CASES.size(); index++) {
+			long time = System.nanoTime();
+			fibo.fib5(TEST_CASES.get(index));
 			System.out.println(System.nanoTime() - time);
 		}
 

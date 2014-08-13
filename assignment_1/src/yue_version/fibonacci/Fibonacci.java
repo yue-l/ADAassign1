@@ -13,7 +13,9 @@ import java.util.ArrayList;
  */
 public class Fibonacci {
 
+	// a list for array implementation
 	public ArrayList<BigInteger> fibLst;
+	// a list for recording the correct answers
 	public ArrayList<BigInteger> fibLstAns;
 
 	/**
@@ -42,10 +44,7 @@ public class Fibonacci {
 	 * @return nth fibon
 	 */
 	public BigInteger fib2(BigInteger nth) {
-		// this bit shouldn't count towards to time complexity
-		// prepareFibLst(nth.intValue() + 1);
-		//
-		// this.fibLst = new ArrayList<>();
+		// use a list instead of an array
 		prepareFibResultLst(nth.intValue());
 		if (nth.compareTo(BigInteger.ZERO) == 0) {
 			return BigInteger.ZERO;
@@ -74,7 +73,7 @@ public class Fibonacci {
 	}
 
 	/**
-	 * A fast solution.
+	 * A matrices multiplication solution.
 	 * 
 	 * @param first
 	 * @param second
@@ -94,7 +93,7 @@ public class Fibonacci {
 	}
 
 	/**
-	 * a faster solution
+	 * a solution using multiplication
 	 * 
 	 * @param nth
 	 * @return
@@ -146,7 +145,9 @@ public class Fibonacci {
 	 * @return
 	 */
 	public BigInteger fib4(BigInteger nth) {
-		if (nth.compareTo(BigInteger.ONE) < 0)
+		if (nth.compareTo(BigInteger.ONE) == 0)
+			return nth;
+		if (nth.compareTo(BigInteger.ZERO) == 0)
 			return nth;
 		BigInteger[][] theMatrix = new BigInteger[][] {
 				{ BigInteger.ZERO, BigInteger.ONE },
@@ -165,42 +166,96 @@ public class Fibonacci {
 		return result[1][0];
 	}
 
-	public static void main(String[] args) {
-		Fibonacci f = new Fibonacci();
-		System.out.println("fib1 tests:");
-		System.out.print("[ ");
-		for (int i = 0; i < 20; i++) {
-			System.out.print(f.fib1(new BigInteger(Integer.toString(i))));
-			if (i + 1 != 20)
-				System.out.print(", ");
-		}
-		System.out.println("]");
-		System.out.println("fib2 tests:");
-		System.out.print("[ ");
-		for (int i = 0; i < 20; i++) {
-			System.out.print(f.fib2(new BigInteger(Integer.toString(i))));
-			if (i + 1 != 20)
-				System.out.print(", ");
-		}
-		System.out.println("]");
-		System.out.println("fib3 tests:");
-		System.out.print("[ ");
-		for (int i = 0; i < 20; i++) {
-			System.out.print(f.fib3(new BigInteger(Integer.toString(i))));
-			if (i + 1 != 20)
-				System.out.print(", ");
-		}
-		System.out.println("]");
-		System.out.println("fib4 tests:");
-		System.out.print("[ ");
-		for (int i = 0; i < 20; i++) {
-			System.out.print(f.fib4(new BigInteger(Integer.toString(i))));
-			if (i + 1 != 20)
-				System.out.print(", ");
-		}
-		System.out.println("]");
+	/**
+	 * 
+	 * @param nth
+	 * @return
+	 */
+	public BigInteger fib5(BigInteger nth) {
+		BigInteger[][] result = new BigInteger[][] {
+				{ BigInteger.ONE, BigInteger.ONE },
+				{ BigInteger.ONE, BigInteger.ZERO } };
+		BigInteger[][] scale = new BigInteger[][] {
+				{ BigInteger.ONE, BigInteger.ONE },
+				{ BigInteger.ONE, BigInteger.ZERO } };
+		if (nth.equals(BigInteger.ZERO))
+			return BigInteger.ZERO;
+		if (nth.equals(BigInteger.ONE))
+			return BigInteger.ONE;
+		for (int i = 2; i <= nth.intValue() - 1; i++)
+			result = multi2by2(result, scale);
+		return result[0][0];
+	}
 
-		// Fibonacci fffi = new Fibonacci();
-		// System.out.println(fffi.fib4(new BigInteger("10000")));
+	/**
+	 * 
+	 * @param n
+	 * @return
+	 */
+	public BigInteger fib6(long n) {
+		BigInteger arr1[][] = { { BigInteger.ONE, BigInteger.ONE },
+				{ BigInteger.ONE, BigInteger.ZERO } };
+		if (n == 0)
+			return BigInteger.ZERO;
+		else {
+			arr1 = power(arr1, n - 1);
+			return arr1[0][0];
+		}
+	}
+
+	private BigInteger[][] power(BigInteger arr1[][], long n) {
+		if (n == 0 || n == 1)
+			return arr1;
+		BigInteger arr2[][] = { { BigInteger.ONE, BigInteger.ONE },
+				{ BigInteger.ONE, BigInteger.ZERO } };
+		arr1 = power(arr1, n / 2);
+		arr1 = multi2by2(arr1, arr1);
+		if (n % 2 != 0)
+			arr1 = multi2by2(arr1, arr2);
+		return arr1;
+	}
+
+	public static void main(String[] args) {
+		// Fibonacci f = new Fibonacci();
+		// System.out.println("fib1 tests:");
+		// System.out.print("[ ");
+		// for (int i = 0; i < 20; i++) {
+		// System.out.print(f.fib1(new BigInteger(Integer.toString(i))));
+		// if (i + 1 != 20)
+		// System.out.print(", ");
+		// }
+		// System.out.println("]");
+		// System.out.println("fib2 tests:");
+		// System.out.print("[ ");
+		// for (int i = 0; i < 20; i++) {
+		// System.out.print(f.fib2(new BigInteger(Integer.toString(i))));
+		// if (i + 1 != 20)
+		// System.out.print(", ");
+		// }
+		// System.out.println("]");
+		// System.out.println("fib3 tests:");
+		// System.out.print("[ ");
+		// for (int i = 0; i < 20; i++) {
+		// System.out.print(f.fib3(new BigInteger(Integer.toString(i))));
+		// if (i + 1 != 20)
+		// System.out.print(", ");
+		// }
+		// System.out.println("]");
+		// System.out.println("fib4 tests:");
+		// System.out.print("[ ");
+		// for (int i = 0; i < 20; i++) {
+		// System.out.print(f.fib4(new BigInteger(Integer.toString(i))));
+		// if (i + 1 != 20)
+		// System.out.print(", ");
+		// }
+		// System.out.println("]");
+
+		Fibonacci fffi = new Fibonacci();
+		System.out.println(fffi.fib2(new BigInteger("50000")));
+		// System.out.println(fffi.fib4(new BigInteger("15")));
+		// System.out.println(fibonacciNumber(5000));
+		fffi.fibFastDoubling(5000);
+		// System.out.println(fffi.fib5(new BigInteger("50000")));
+		fffi.fib6(50000);
 	}
 }
