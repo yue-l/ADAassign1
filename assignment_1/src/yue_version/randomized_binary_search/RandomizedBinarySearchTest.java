@@ -10,7 +10,7 @@ import org.junit.Test;
  * RandomizedBinarySearch test client. test range is set to 100. This is an
  * accuracy test to ensure the class does what it's meant to do
  * 
- * @author Yue
+ * @author Yue Li & Ximei Liu
  * @version 1.0
  *
  */
@@ -36,12 +36,14 @@ public class RandomizedBinarySearchTest {
 		assertFalse(rbs.search(200));
 	}
 
+	@Test
 	public void testRandomizedSearchFailToFindOutLowerboundValue() {
 		assertFalse(rbs.search(0));
 		assertFalse(rbs.search(-1));
 		assertFalse(rbs.search(-100));
 	}
 
+	@Test
 	public void testRandomizedSearchSuccessfulFoundValues() {
 		assertTrue(rbs.search(1));
 		assertTrue(rbs.search(3));

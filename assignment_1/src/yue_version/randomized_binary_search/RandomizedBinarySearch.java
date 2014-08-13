@@ -2,6 +2,12 @@ package yue_version.randomized_binary_search;
 
 import java.util.Random;
 
+/**
+ * Q6 a randomized binary search function.
+ * 
+ * @author Yue Li & Ximei Liu
+ *
+ */
 public class RandomizedBinarySearch {
 	private int[] keys;
 	private Random ran;
@@ -11,6 +17,15 @@ public class RandomizedBinarySearch {
 		ran = new Random();
 	}
 
+	public RandomizedBinarySearch() {
+		ran = new Random();
+	}
+
+	/**
+	 * initiate an int array according to its size
+	 * 
+	 * @param capacity
+	 */
 	public void initializeKeys(int capacity) {
 		keys = new int[capacity];
 		int startVal = 1;
@@ -43,8 +58,22 @@ public class RandomizedBinarySearch {
 		}
 	}
 
+	/**
+	 * 
+	 * @param arraySize
+	 */
+	public long analyzeTimeComplexity(int arraySize) {
+		initializeKeys(arraySize);
+		int randomlyTarget = this.ran.nextInt(arraySize) + 1;
+		long start = System.nanoTime();
+		search(randomlyTarget);
+		return System.nanoTime() - start;
+	}
+
 	public static void main(String[] args) {
-		RandomizedBinarySearch rbs = new RandomizedBinarySearch(100);
-		System.out.println(rbs.search(110));
+		RandomizedBinarySearch rbs = new RandomizedBinarySearch();
+		for (int i = 1; i <= 1000; i++) {
+			System.out.println(rbs.analyzeTimeComplexity(i));
+		}
 	}
 }

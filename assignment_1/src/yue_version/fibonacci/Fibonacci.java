@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class Fibonacci {
 
 	public ArrayList<BigInteger> fibLst;
+	public ArrayList<BigInteger> fibLstAns;
 
 	/**
 	 * The simplest way to solve fibonacci. Time complexity is exponential
@@ -22,13 +23,14 @@ public class Fibonacci {
 	 * @return the nth fibon number
 	 */
 	public BigInteger fib1(BigInteger nth) {
-		if (nth.compareTo(new BigInteger("0")) == 0) {
-			return new BigInteger("0");
-		} else if (nth.compareTo(new BigInteger("1")) == 0) {
-			return new BigInteger("1");
+		if (nth.compareTo(BigInteger.ZERO) == 0) {
+			return BigInteger.ZERO;
+		} else if (nth.compareTo(BigInteger.ONE) == 0) {
+			return BigInteger.ONE;
 		} else {
-			BigInteger a1 = nth.subtract(new BigInteger("1"));
-			BigInteger a2 = nth.subtract(new BigInteger("2"));
+			BigInteger a1 = nth.subtract(BigInteger.ONE);
+			BigInteger a2 = nth.subtract(BigInteger.ONE).subtract(
+					BigInteger.ONE);
 			return fib1(a1).add(fib1(a2));
 		}
 	}
@@ -40,12 +42,16 @@ public class Fibonacci {
 	 * @return nth fibon
 	 */
 	public BigInteger fib2(BigInteger nth) {
-		prepareFibLst(nth.intValue() + 1);
-		if (nth.compareTo(new BigInteger("0")) == 0) {
-			return new BigInteger("0");
+		// this bit shouldn't count towards to time complexity
+		// prepareFibLst(nth.intValue() + 1);
+		//
+		// this.fibLst = new ArrayList<>();
+		prepareFibResultLst(nth.intValue());
+		if (nth.compareTo(BigInteger.ZERO) == 0) {
+			return BigInteger.ZERO;
 		} else {
-			this.fibLst.set(0, new BigInteger("0"));
-			this.fibLst.set(1, new BigInteger("1"));
+			this.fibLst.set(0, BigInteger.ZERO);
+			this.fibLst.set(1, BigInteger.ONE);
 			for (int i = 2; i < this.fibLst.size(); i++) {
 				fibLst.set(i, fibLst.get(i - 1).add(fibLst.get(i - 2)));
 			}
@@ -53,17 +59,17 @@ public class Fibonacci {
 		return fibLst.get(nth.intValue());
 	}
 
-	public void prepareFibLst(int count) {
+	public void prepareFibResultLst(int nth) {
 		this.fibLst = new ArrayList<BigInteger>();
-		while (count-- > 0) {
-			fibLst.add(new BigInteger("0"));
+		for (int i = 0; i <= nth; i++) {
+			fibLst.add(BigInteger.ZERO);
 		}
-		generateFibLst();
 	}
 
-	private void generateFibLst() {
-		for (int i = 0; i < fibLst.size(); i++) {
-			fibLst.set(i, fib4(new BigInteger(Integer.toString(i))));
+	public void generateFibTestCaseAnsLst(int count) {
+		this.fibLstAns = new ArrayList<>();
+		for (int i = 0; i < count; i++) {
+			fibLstAns.add(fib2(new BigInteger(Integer.toString(i))));
 		}
 	}
 
@@ -94,17 +100,17 @@ public class Fibonacci {
 	 * @return
 	 */
 	public BigInteger fib3(BigInteger nth) {
-		if (nth.compareTo(new BigInteger("0")) == 0)
-			return new BigInteger("0");
-		else if (nth.compareTo(new BigInteger("1")) == 0)
-			return new BigInteger("1");
+		if (nth.compareTo(BigInteger.ZERO) == 0)
+			return BigInteger.ZERO;
+		else if (nth.compareTo(BigInteger.ONE) == 0)
+			return BigInteger.ONE;
 		else {
 			BigInteger[][] first = new BigInteger[][] {
-					{ new BigInteger("0"), new BigInteger("1") },
-					{ new BigInteger("1"), new BigInteger("1") } };
+					{ BigInteger.ZERO, BigInteger.ONE },
+					{ BigInteger.ONE, BigInteger.ONE } };
 			BigInteger[][] second = new BigInteger[][] {
-					{ new BigInteger("0"), new BigInteger("1") },
-					{ new BigInteger("1"), new BigInteger("0") } };
+					{ BigInteger.ZERO, BigInteger.ONE },
+					{ BigInteger.ONE, BigInteger.ZERO } };
 			for (int i = 1; i < nth.intValue(); i++) {
 				second = multi2by2(second, first);
 			}
@@ -140,19 +146,20 @@ public class Fibonacci {
 	 * @return
 	 */
 	public BigInteger fib4(BigInteger nth) {
-		if (nth.compareTo(new BigInteger("1")) < 0)
+		if (nth.compareTo(BigInteger.ONE) < 0)
 			return nth;
 		BigInteger[][] theMatrix = new BigInteger[][] {
-				{ new BigInteger("0"), new BigInteger("1") },
-				{ new BigInteger("1"), new BigInteger("1") } };
-		BigInteger[][] result = { { new BigInteger("1"), new BigInteger("0") },
-				{ new BigInteger("0"), new BigInteger("1") } };
-		while (nth.compareTo(new BigInteger("0")) > 0) {
-			BigInteger remainder = nth.remainder(new BigInteger("2"));
+				{ BigInteger.ZERO, BigInteger.ONE },
+				{ BigInteger.ONE, BigInteger.ONE } };
+		BigInteger[][] result = { { BigInteger.ONE, BigInteger.ZERO },
+				{ BigInteger.ZERO, BigInteger.ONE } };
+		while (nth.compareTo(BigInteger.ZERO) > 0) {
+			BigInteger remainder = nth.remainder(BigInteger.ONE
+					.add(BigInteger.ONE));
 			if (remainder.intValue() != 0) {
 				result = multi2by2(result, theMatrix);
 			}
-			nth = nth.divide(new BigInteger("2"));
+			nth = nth.divide(BigInteger.ONE.add(BigInteger.ONE));
 			theMatrix = multi2by2(theMatrix, theMatrix);
 		}
 		return result[1][0];
@@ -162,35 +169,38 @@ public class Fibonacci {
 		Fibonacci f = new Fibonacci();
 		System.out.println("fib1 tests:");
 		System.out.print("[ ");
-		for (int i = 0; i < 21; i++) {
+		for (int i = 0; i < 20; i++) {
 			System.out.print(f.fib1(new BigInteger(Integer.toString(i))));
-			if (i + 1 != 21)
+			if (i + 1 != 20)
 				System.out.print(", ");
 		}
 		System.out.println("]");
 		System.out.println("fib2 tests:");
 		System.out.print("[ ");
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 20; i++) {
 			System.out.print(f.fib2(new BigInteger(Integer.toString(i))));
-			if (i + 1 != 10)
+			if (i + 1 != 20)
 				System.out.print(", ");
 		}
 		System.out.println("]");
 		System.out.println("fib3 tests:");
 		System.out.print("[ ");
-		for (int i = 0; i <= 64; i++) {
+		for (int i = 0; i < 20; i++) {
 			System.out.print(f.fib3(new BigInteger(Integer.toString(i))));
-			if (i + 1 != 65)
+			if (i + 1 != 20)
 				System.out.print(", ");
 		}
 		System.out.println("]");
 		System.out.println("fib4 tests:");
-		for (int i = 0; i <= 64; i++) {
-			System.out.println("case " + i + ": "
-					+ f.fib4(new BigInteger(Integer.toString(i))));
+		System.out.print("[ ");
+		for (int i = 0; i < 20; i++) {
+			System.out.print(f.fib4(new BigInteger(Integer.toString(i))));
+			if (i + 1 != 20)
+				System.out.print(", ");
 		}
+		System.out.println("]");
 
-		Fibonacci fffi = new Fibonacci();
-		System.out.println(fffi.fib4(new BigInteger("100000")));
+		// Fibonacci fffi = new Fibonacci();
+		// System.out.println(fffi.fib4(new BigInteger("10000")));
 	}
 }
