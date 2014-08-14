@@ -44,10 +44,10 @@ public class Fibonacci {
 	 * @param nth
 	 * @return nth fibon
 	 */
-	public BigInteger fib2(BigInteger nth) {
+	public BigInteger fib2(int nth) {
 		// use a list instead of an array
-		prepareFibResultLst(nth.intValue());
-		if (nth.compareTo(BigInteger.ZERO) == 0) {
+		prepareFibResultLst(nth);
+		if (nth == 0) {
 			return BigInteger.ZERO;
 		} else {
 			this.fibLst.set(0, BigInteger.ZERO);
@@ -56,7 +56,7 @@ public class Fibonacci {
 				fibLst.set(i, fibLst.get(i - 1).add(fibLst.get(i - 2)));
 			}
 		}
-		return fibLst.get(nth.intValue());
+		return fibLst.get(nth);
 	}
 
 	public void prepareFibResultLst(int nth) {
@@ -69,7 +69,7 @@ public class Fibonacci {
 	public void generateFibTestCaseAnsLst(int count) {
 		this.fibLstAns = new ArrayList<>();
 		for (int i = 0; i < count; i++) {
-			fibLstAns.add(fib4(new BigInteger(Integer.toString(i))));
+			fibLstAns.add(fib4(i));
 		}
 	}
 
@@ -99,10 +99,10 @@ public class Fibonacci {
 	 * @param nth
 	 * @return
 	 */
-	public BigInteger fib3(BigInteger nth) {
-		if (nth.compareTo(BigInteger.ZERO) == 0)
+	public BigInteger fib3(int nth) {
+		if (nth == 0)
 			return BigInteger.ZERO;
-		else if (nth.compareTo(BigInteger.ONE) == 0)
+		else if (nth == 1)
 			return BigInteger.ONE;
 		else {
 			BigInteger[][] first = new BigInteger[][] {
@@ -111,7 +111,7 @@ public class Fibonacci {
 			BigInteger[][] second = new BigInteger[][] {
 					{ BigInteger.ZERO, BigInteger.ONE },
 					{ BigInteger.ONE, BigInteger.ZERO } };
-			for (int i = 1; i < nth.intValue(); i++) {
+			for (int i = 1; i < nth; i++) {
 				second = multi2by2(second, first);
 			}
 			return second[0][1];
@@ -144,13 +144,13 @@ public class Fibonacci {
 	 * @param n
 	 * @return
 	 */
-	public BigInteger fib4(BigInteger n) {
+	public BigInteger fib4(int n) {
 		BigInteger arr1[][] = { { BigInteger.ONE, BigInteger.ONE },
 				{ BigInteger.ONE, BigInteger.ZERO } };
-		if (n.equals(BigInteger.ZERO))
+		if (n == 0)
 			return BigInteger.ZERO;
 		else {
-			arr1 = power(arr1, n.intValue() - 1);
+			arr1 = power(arr1, n - 1);
 			return arr1[0][0];
 		}
 	}
@@ -208,6 +208,6 @@ public class Fibonacci {
 		// System.out.println(fibonacciNumber(5000));
 		// fffi.fibFastDoubling(5000);
 		// System.out.println(fffi.fib5(new BigInteger("50000")));
-		System.out.println(fffi.fib4(new BigInteger("1000000")));
+		System.out.println(fffi.fib4(10000));
 	}
 }

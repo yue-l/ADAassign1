@@ -32,7 +32,7 @@ public class FibonacciTimeComplexityTest {
 		// f.functionThreeTime(10000);
 		// f.functionFourTime(30);
 		// logarithm
-		f.functionFourTime(10000);
+		// f.functionFourTime(10000);
 	}
 
 	/**
@@ -65,7 +65,7 @@ public class FibonacciTimeComplexityTest {
 		for (int index = 0; index < n; index++) {
 			BigInteger bi = new BigInteger(Integer.toString(index));
 			long time = System.nanoTime();
-			fibo.fib2(bi);
+			fibo.fib2(index);
 			System.out.println(System.nanoTime() - time);
 		}
 
@@ -76,7 +76,7 @@ public class FibonacciTimeComplexityTest {
 		Fibonacci fibo = new Fibonacci();
 		for (int index = 0; index < TEST_CASES.size(); index++) {
 			long time = System.nanoTime();
-			fibo.fib3(TEST_CASES.get(index));
+			fibo.fib3(index);
 			System.out.println(System.nanoTime() - time);
 		}
 
@@ -87,7 +87,7 @@ public class FibonacciTimeComplexityTest {
 		Fibonacci fibo = new Fibonacci();
 		for (int index = 0; index < TEST_CASES.size(); index++) {
 			long time = System.nanoTime();
-			fibo.fib4(TEST_CASES.get(index));
+			fibo.fib4(index);
 			System.out.println(System.nanoTime() - time);
 		}
 	}

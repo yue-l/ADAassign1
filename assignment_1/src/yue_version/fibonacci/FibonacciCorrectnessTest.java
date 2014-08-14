@@ -60,10 +60,8 @@ public class FibonacciCorrectnessTest {
 		for (int i = 0; i < fib.fibLstAns.size(); i++) {
 			assertTrue(
 					"the actual out differs. Expected " + fib.fibLstAns.get(i)
-							+ " was "
-							+ fib.fib2(new BigInteger(Integer.toString(i))),
-					fib.fibLstAns.get(i).equals(
-							fib.fib2(new BigInteger(Integer.toString(i)))));
+							+ " was " + fib.fib2(i), fib.fibLstAns.get(i)
+							.equals(fib.fib2(i)));
 		}
 		long result = (System.nanoTime() - time) / 1000;
 		System.out.println("fib2 took " + result
@@ -76,10 +74,8 @@ public class FibonacciCorrectnessTest {
 		for (int i = 0; i < fib.fibLstAns.size(); i++) {
 			assertTrue(
 					"the actual out differs. Expected " + fib.fibLstAns.get(i)
-							+ " was "
-							+ fib.fib3(new BigInteger(Integer.toString(i))),
-					fib.fibLstAns.get(i).equals(
-							fib.fib3(new BigInteger(Integer.toString(i)))));
+							+ " was " + fib.fib3(i), fib.fibLstAns.get(i)
+							.equals(fib.fib3(i)));
 		}
 		long result = (System.nanoTime() - time) / 1000;
 		System.out.println("fib3 took " + result
@@ -92,10 +88,8 @@ public class FibonacciCorrectnessTest {
 		for (int i = 0; i < fib.fibLstAns.size(); i++) {
 			assertTrue(
 					"the actual out differs. Expected " + fib.fibLstAns.get(i)
-							+ " was "
-							+ fib.fib4(new BigInteger(Integer.toString(i))),
-					fib.fibLstAns.get(i).equals(
-							fib.fib4(new BigInteger(Integer.toString(i)))));
+							+ " was " + fib.fib4(i), fib.fibLstAns.get(i)
+							.equals(fib.fib4(i)));
 		}
 		long result = (System.nanoTime() - time) / 1000;
 		System.out.println("fib4 took " + result
