@@ -25,7 +25,7 @@ public class FibonacciTimeComplexityTest {
 		// TODO Auto-generated method stub
 		FibonacciTimeComplexityTest f = new FibonacciTimeComplexityTest();
 		// exponential times
-		// f.functionOneTime(20);
+		f.functionOneTime(100);
 		// linear
 		// f.functionTwoTime(30);
 		// f.functionFiveTime(10000);
@@ -52,10 +52,9 @@ public class FibonacciTimeComplexityTest {
 		Fibonacci fibo = new Fibonacci();
 		for (int index = 0; index < TEST_CASES.size(); index++) {
 			long time = System.nanoTime();
-			fibo.fib1(TEST_CASES.get(index));
+			fibo.fib1(index);
 			System.out.println(System.nanoTime() - time);
 		}
-
 	}
 
 	public void functionTwoTime(int n) {

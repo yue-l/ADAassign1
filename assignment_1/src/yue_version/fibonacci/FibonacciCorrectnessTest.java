@@ -30,7 +30,7 @@ public class FibonacciCorrectnessTest {
 	@Before
 	public void setUp() throws Exception {
 		fib = new Fibonacci();
-		fib.generateFibTestCaseAnsLst(20);
+		fib.generateFibTestCaseAnsLst(30);
 	}
 
 	@After
@@ -42,12 +42,10 @@ public class FibonacciCorrectnessTest {
 	public void testFib1WithininRangePass() {
 		long time = System.nanoTime();
 		for (int i = 0; i < fib.fibLstAns.size(); i++) {
+			BigInteger ans = fib.fib1(i);
 			assertTrue(
 					"the actual out differs. Expected " + fib.fibLstAns.get(i)
-							+ " was "
-							+ fib.fib1(new BigInteger(Integer.toString(i))),
-					fib.fibLstAns.get(i).equals(
-							fib.fib1(new BigInteger(Integer.toString(i)))));
+							+ " was " + ans, fib.fibLstAns.get(i).equals(ans));
 		}
 		long result = (System.nanoTime() - time) / 1000;
 		System.out.println("fib1 took " + result

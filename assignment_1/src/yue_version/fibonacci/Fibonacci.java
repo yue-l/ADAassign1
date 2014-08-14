@@ -25,18 +25,29 @@ public class Fibonacci {
 	 * @param nth
 	 * @return the nth fibon number
 	 */
-	public BigInteger fib1(BigInteger nth) {
-		if (nth.compareTo(BigInteger.ZERO) == 0) {
+	public BigInteger fib1(int nth) {
+		if (nth == 0) {
 			return BigInteger.ZERO;
-		} else if (nth.compareTo(BigInteger.ONE) == 0) {
+		} else if (nth == 1) {
 			return BigInteger.ONE;
 		} else {
-			BigInteger a1 = nth.subtract(BigInteger.ONE);
-			BigInteger a2 = nth.subtract(BigInteger.ONE).subtract(
+			BigInteger bigInt = new BigInteger(Integer.toString(nth));
+			BigInteger a1 = bigInt.subtract(BigInteger.ONE);
+			BigInteger a2 = bigInt.subtract(BigInteger.ONE).subtract(
 					BigInteger.ONE);
-			return fib1(a1).add(fib1(a2));
+			return fib1(a1.intValue()).add(fib1(a2.intValue()));
 		}
 	}
+
+	// public BigInteger Fibfun1(int n) {
+	// if (n == 0) {
+	// return new BigInteger("0");
+	// }
+	// if (n == 1) {
+	// return new BigInteger("1");
+	// }
+	// return Fibfun1(n - 1).add(Fibfun1(n - 2));
+	// }
 
 	/**
 	 * A better one that takes linear time complexity to solve the problem
@@ -132,7 +143,7 @@ public class Fibonacci {
 		int mid = nth / 2;
 		long a = fibFastDoubling(mid + 1);
 		long b = fibFastDoubling(mid);
-		if (mid % 2 == 1)
+		if (nth % 2 == 1)
 			return a * a + b * b;
 		else
 			return b * (2 * a - b);
@@ -204,10 +215,9 @@ public class Fibonacci {
 
 		Fibonacci fffi = new Fibonacci();
 		// System.out.println(fffi.fib2(new BigInteger("50000")));
-		// System.out.println(fffi.fib4(new BigInteger("15")));
+		System.out.println(fffi.fib4(50));
 		// System.out.println(fibonacciNumber(5000));
-		// fffi.fibFastDoubling(5000);
-		// System.out.println(fffi.fib5(new BigInteger("50000")));
-		System.out.println(fffi.fib4(10000));
+		// System.out.println(fffi.fibFastDoubling(50));
+		// System.out.println(fffi.fib1(40));
 	}
 }
