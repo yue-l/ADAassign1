@@ -9,6 +9,7 @@ import java.util.ArrayList;
  * @author Yue
  * @version 26-07-14 replaced primitive type implementation for checking large
  *          faboncacci number
+ * @version 13-08-14 fixed running time performance for fibonacci function 4
  *
  */
 public class Fibonacci {
@@ -68,7 +69,7 @@ public class Fibonacci {
 	public void generateFibTestCaseAnsLst(int count) {
 		this.fibLstAns = new ArrayList<>();
 		for (int i = 0; i < count; i++) {
-			fibLstAns.add(fib2(new BigInteger(Integer.toString(i))));
+			fibLstAns.add(fib4(new BigInteger(Integer.toString(i))));
 		}
 	}
 
@@ -138,67 +139,18 @@ public class Fibonacci {
 	}
 
 	/**
-	 * Using the idea of reflection, to produce the reflection whenever nth
-	 * number is not power of 2
-	 * 
-	 * @param nth
-	 * @return
-	 */
-	public BigInteger fib4(BigInteger nth) {
-		if (nth.compareTo(BigInteger.ONE) == 0)
-			return nth;
-		if (nth.compareTo(BigInteger.ZERO) == 0)
-			return nth;
-		BigInteger[][] theMatrix = new BigInteger[][] {
-				{ BigInteger.ZERO, BigInteger.ONE },
-				{ BigInteger.ONE, BigInteger.ONE } };
-		BigInteger[][] result = { { BigInteger.ONE, BigInteger.ZERO },
-				{ BigInteger.ZERO, BigInteger.ONE } };
-		while (nth.compareTo(BigInteger.ZERO) > 0) {
-			BigInteger remainder = nth.remainder(BigInteger.ONE
-					.add(BigInteger.ONE));
-			if (remainder.intValue() != 0) {
-				result = multi2by2(result, theMatrix);
-			}
-			nth = nth.divide(BigInteger.ONE.add(BigInteger.ONE));
-			theMatrix = multi2by2(theMatrix, theMatrix);
-		}
-		return result[1][0];
-	}
-
-	/**
-	 * 
-	 * @param nth
-	 * @return
-	 */
-	public BigInteger fib5(BigInteger nth) {
-		BigInteger[][] result = new BigInteger[][] {
-				{ BigInteger.ONE, BigInteger.ONE },
-				{ BigInteger.ONE, BigInteger.ZERO } };
-		BigInteger[][] scale = new BigInteger[][] {
-				{ BigInteger.ONE, BigInteger.ONE },
-				{ BigInteger.ONE, BigInteger.ZERO } };
-		if (nth.equals(BigInteger.ZERO))
-			return BigInteger.ZERO;
-		if (nth.equals(BigInteger.ONE))
-			return BigInteger.ONE;
-		for (int i = 2; i <= nth.intValue() - 1; i++)
-			result = multi2by2(result, scale);
-		return result[0][0];
-	}
-
-	/**
+	 * logN performance
 	 * 
 	 * @param n
 	 * @return
 	 */
-	public BigInteger fib6(long n) {
+	public BigInteger fib4(BigInteger n) {
 		BigInteger arr1[][] = { { BigInteger.ONE, BigInteger.ONE },
 				{ BigInteger.ONE, BigInteger.ZERO } };
-		if (n == 0)
+		if (n.equals(BigInteger.ZERO))
 			return BigInteger.ZERO;
 		else {
-			arr1 = power(arr1, n - 1);
+			arr1 = power(arr1, n.intValue() - 1);
 			return arr1[0][0];
 		}
 	}
@@ -251,11 +203,11 @@ public class Fibonacci {
 		// System.out.println("]");
 
 		Fibonacci fffi = new Fibonacci();
-		System.out.println(fffi.fib2(new BigInteger("50000")));
+		// System.out.println(fffi.fib2(new BigInteger("50000")));
 		// System.out.println(fffi.fib4(new BigInteger("15")));
 		// System.out.println(fibonacciNumber(5000));
-		fffi.fibFastDoubling(5000);
+		// fffi.fibFastDoubling(5000);
 		// System.out.println(fffi.fib5(new BigInteger("50000")));
-		fffi.fib6(50000);
+		System.out.println(fffi.fib4(new BigInteger("1000000")));
 	}
 }

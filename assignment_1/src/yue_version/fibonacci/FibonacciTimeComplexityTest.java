@@ -28,10 +28,11 @@ public class FibonacciTimeComplexityTest {
 		// f.functionOneTime(20);
 		// linear
 		// f.functionTwoTime(30);
-		 f.functionFiveTime(10000);
-		// logarithm
+		// f.functionFiveTime(10000);
 		// f.functionThreeTime(10000);
 		// f.functionFourTime(30);
+		// logarithm
+		f.functionFourTime(10000);
 	}
 
 	/**
@@ -50,8 +51,6 @@ public class FibonacciTimeComplexityTest {
 		CASES_INIT(n);
 		Fibonacci fibo = new Fibonacci();
 		for (int index = 0; index < TEST_CASES.size(); index++) {
-			// BigInteger test = new BigInteger(
-			// Integer.toString(TEST_CASES[index]));
 			long time = System.nanoTime();
 			fibo.fib1(TEST_CASES.get(index));
 			System.out.println(System.nanoTime() - time);
@@ -72,14 +71,6 @@ public class FibonacciTimeComplexityTest {
 
 	}
 
-	// private void prepareQuestionList(Fibonacci fi, int n) {
-	// fi.fibLst = new ArrayList<BigInteger>();
-	// for (int i = 0; i < n; i++) {
-	// String temp = Integer.toString(i);
-	// fi.fibLst.add(new BigInteger(temp));
-	// }
-	// }
-
 	public void functionThreeTime(int n) {
 		CASES_INIT(n);
 		Fibonacci fibo = new Fibonacci();
@@ -96,20 +87,8 @@ public class FibonacciTimeComplexityTest {
 		Fibonacci fibo = new Fibonacci();
 		for (int index = 0; index < TEST_CASES.size(); index++) {
 			long time = System.nanoTime();
-			fibo.fib3(TEST_CASES.get(index));
+			fibo.fib4(TEST_CASES.get(index));
 			System.out.println(System.nanoTime() - time);
 		}
-
-	}
-
-	public void functionFiveTime(int n) {
-		CASES_INIT(n);
-		Fibonacci fibo = new Fibonacci();
-		for (int index = 0; index < TEST_CASES.size(); index++) {
-			long time = System.nanoTime();
-			fibo.fib5(TEST_CASES.get(index));
-			System.out.println(System.nanoTime() - time);
-		}
-
 	}
 }

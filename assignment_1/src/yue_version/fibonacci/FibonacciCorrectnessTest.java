@@ -13,13 +13,20 @@ import org.junit.Test;
  * implementation.
  * 
  * @author Yue
- * @version This tests are designed for getting run time complexity of different
- *          algorithms
+ * @version These tests are designed for testing the correctness of the
+ *          fibonacci functions. The reason behind of this is to improve the
+ *          testing processes
  */
 public class FibonacciCorrectnessTest {
 
 	private Fibonacci fib;
 
+	/**
+	 * setup value controls how many test cases to be tested for each function.
+	 * It initially set to 20 considering function 1 grows exponentially.
+	 * 
+	 * @throws Exception
+	 */
 	@Before
 	public void setUp() throws Exception {
 		fib = new Fibonacci();
@@ -32,15 +39,15 @@ public class FibonacciCorrectnessTest {
 	}
 
 	@Test
-	public void testFib1WithinIntRangePass() {
+	public void testFib1WithininRangePass() {
 		long time = System.nanoTime();
 		for (int i = 0; i < fib.fibLstAns.size(); i++) {
 			assertTrue(
-					"the actual out differs. Expected " + fib.fibLst.get(i)
+					"the actual out differs. Expected " + fib.fibLstAns.get(i)
 							+ " was "
 							+ fib.fib1(new BigInteger(Integer.toString(i))),
 					fib.fibLstAns.get(i).equals(
-							(fib.fib1(new BigInteger(Integer.toString(i))))));
+							fib.fib1(new BigInteger(Integer.toString(i)))));
 		}
 		long result = (System.nanoTime() - time) / 1000;
 		System.out.println("fib1 took " + result
@@ -48,7 +55,7 @@ public class FibonacciCorrectnessTest {
 	}
 
 	@Test
-	public void testFib2WithinInt47RangePass() {
+	public void testFib2WithinInRangePass() {
 		long time = System.nanoTime();
 		for (int i = 0; i < fib.fibLstAns.size(); i++) {
 			assertTrue(
@@ -64,9 +71,9 @@ public class FibonacciCorrectnessTest {
 	}
 
 	@Test
-	public void testFib3Within47RangePass() {
+	public void testFib3WithinRangePass() {
 		long time = System.nanoTime();
-		for (int i = 0; i < fib.fibLst.size(); i++) {
+		for (int i = 0; i < fib.fibLstAns.size(); i++) {
 			assertTrue(
 					"the actual out differs. Expected " + fib.fibLstAns.get(i)
 							+ " was "
@@ -80,9 +87,9 @@ public class FibonacciCorrectnessTest {
 	}
 
 	@Test
-	public void testFib4Within47RangePass() {
+	public void testFib4WithinRangePass() {
 		long time = System.nanoTime();
-		for (int i = 0; i < fib.fibLst.size(); i++) {
+		for (int i = 0; i < fib.fibLstAns.size(); i++) {
 			assertTrue(
 					"the actual out differs. Expected " + fib.fibLstAns.get(i)
 							+ " was "
