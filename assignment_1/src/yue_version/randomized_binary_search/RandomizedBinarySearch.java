@@ -3,7 +3,10 @@ package yue_version.randomized_binary_search;
 import java.util.Random;
 
 /**
- * Q6 a randomized binary search function.
+ * Q6 a randomized binary search function. The downside of such search is the
+ * performance not quite stable. The search relies on the randomly generated
+ * indices which may cause searching in a linear time. Imagine randomly lookup
+ * at indices of 0 1 2 3 4 5.... Such case shall not happen that often though.
  * 
  * @author Yue Li & Ximei Liu
  *
