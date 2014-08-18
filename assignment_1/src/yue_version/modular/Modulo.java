@@ -9,18 +9,17 @@ package yue_version.modular;
  */
 public class Modulo {
 
-	static int[] euclid(int p, int q) {
+	public static int[] euclid(int p, int q) {
 		// found p as gcd
 		if (q == 0) {
 			return new int[] { 1, 0, p };
 		}
 		// shall keep recursing when gcd is not found
 		int[] resultsFromRecursion = euclid(q, p % q);
-		// reassign return values for the three terms.
-		int b = resultsFromRecursion[0] - (p / q) * resultsFromRecursion[1];
+		// reassign return values for the terms.
 		int a = resultsFromRecursion[1];
-		int commonDivisor = resultsFromRecursion[2];
-		return new int[] { a, b, commonDivisor };
+		int b = resultsFromRecursion[0] - (p / q) * resultsFromRecursion[1];
+		return new int[] { a, b, resultsFromRecursion[2] };
 	}
 
 	public static int gcd(int x, int y) {
