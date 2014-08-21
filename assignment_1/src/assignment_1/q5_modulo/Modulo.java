@@ -1,4 +1,4 @@
-package yue_version.modular;
+package assignment_1.q5_modulo;
 
 /**
  * Algorithms Design and Analysis. Assignment 1 Q5b

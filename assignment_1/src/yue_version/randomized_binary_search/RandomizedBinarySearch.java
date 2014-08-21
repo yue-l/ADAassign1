@@ -45,12 +45,6 @@ public class RandomizedBinarySearch {
 		if (start >= this.keys.length || end <= 0)
 			return false;
 		int generatedEnd = this.ran.nextInt(end) - start;
-		// do while loop to ensure the end part >= 0
-		// as randomly generated number - start can be negative
-		do {
-			generatedEnd = this.ran.nextInt(end) - start;
-		} while (generatedEnd < 0);
-
 		int index = start + generatedEnd;
 		if (this.keys[index] == lookUp) {
 			return true;

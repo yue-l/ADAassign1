@@ -1,4 +1,4 @@
-package yue_version.fibonacci;
+package assignment_1.q1_fibonacci;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -38,16 +38,6 @@ public class Fibonacci {
 			return fib1(a1.intValue()).add(fib1(a2.intValue()));
 		}
 	}
-
-	// public BigInteger Fibfun1(int n) {
-	// if (n == 0) {
-	// return new BigInteger("0");
-	// }
-	// if (n == 1) {
-	// return new BigInteger("1");
-	// }
-	// return Fibfun1(n - 1).add(Fibfun1(n - 2));
-	// }
 
 	/**
 	 * A better one that takes linear time complexity to solve the problem

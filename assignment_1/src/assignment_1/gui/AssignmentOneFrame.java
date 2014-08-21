@@ -1,4 +1,4 @@
-package yue_version.gui;
+package assignment_1.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -11,17 +11,17 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
-import yue_version.fibonacci.Fibonacci;
-import yue_version.modular.Modulo;
+import assignment_1.q1_fibonacci.Fibonacci;
+import assignment_1.q5_modulo.Modulo;
 
 /**
- * This is for fun, an easy fibonacci calculator
+ * This is for fun, an easy fibonacci calculator and euclid algorithm
  * 
  * @author Yue
  * @version 1.0
  *
  */
-public class AssignedFrame extends JFrame {
+public class AssignmentOneFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField fiboTextField;
@@ -47,7 +47,7 @@ public class AssignedFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AssignedFrame frame = new AssignedFrame();
+					AssignmentOneFrame frame = new AssignmentOneFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -59,7 +59,7 @@ public class AssignedFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AssignedFrame() {
+	public AssignmentOneFrame() {
 		super("Assignment 1");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
